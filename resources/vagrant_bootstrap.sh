@@ -15,6 +15,7 @@ sudo apt-get update -qq \
 
 
 ## CONFIG
+sudo cp $APP_ROOT/env.example /srv/.env;
 sudo rm /etc/nginx/sites-enabled/default;
 cat $APP_ROOT/resources/nginx.conf \
     | envsubst '$APP_NAME $APP_ROOT' \
