@@ -16,11 +16,11 @@ sudo apt-get update -qq \
 
 ## CONFIG
 sudo rm /etc/nginx/sites-enabled/default;
-cat resources/nginx.conf \
+cat $APP_ROOT/resources/nginx.conf \
     | envsubst '$APP_NAME $APP_ROOT' \
     | sudo tee /etc/nginx/sites-enabled/$APP_NAME > /dev/null
 
-cat resources/phpfpm.conf \
+cat $APP_ROOT/resources/phpfpm.conf \
     | envsubst '$APP_NAME $APP_ROOT' \
     | sudo tee /etc/php5/fpm/pool.d/$APP_NAME.conf > /dev/null
 
