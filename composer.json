@@ -1,4 +1,11 @@
 {
+    "autoload": {
+        "psr-4": {
+            "Crudders\\": "app/src/",
+            "Test\\": "tests",
+            "CLI\\": "app/CLI/"
+        }
+    },
     "require": {
         "silex/silex": "^1.3",
         "vlucas/phpdotenv": "^2.2",

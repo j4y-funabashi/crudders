@@ -20,7 +20,11 @@ $app['logger'] = $app->share(function () {
 
 
 // CONTROLLERS
+$app['action.index'] = $app->share(function () use ($app) {
+    return new Crudders\ShowIndexPageAction();
+});
 
 // ROUTES
+$app->get("/", "action.index:__invoke");
 
 $app->run();
