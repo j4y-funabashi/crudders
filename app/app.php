@@ -4,16 +4,19 @@ $app = new Silex\Application();
 $app['debug'] = (false !== getenv("APP_DEBUG"))
     ? true
     : false;
+$app['APP_NAME'] = (false !== getenv("APP_NAME"))
+    ? getenv("APP_NAME")
+    : "app";
 
 
 // PROVIDERS
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
 
-$app['logger'] = $app->share(function () {
-    $log = new Monolog\Logger('name');
+$app['log'] = $app->share(function () use ($app) {
+    $log = new Monolog\Logger($app['APP_NAME']);
     $log->pushHandler(
-        new Monolog\Handler\StreamHandler('php://stdout', Monolog\Logger::WARNING)
+        new Monolog\Handler\SyslogHandler($app['APP_NAME'])
     );
     return $log;
 });
@@ -21,7 +24,7 @@ $app['logger'] = $app->share(function () {
 
 // CONTROLLERS
 $app['action.index'] = $app->share(function () use ($app) {
-    return new App\ShowIndexPageAction();
+    return new App\ShowIndexPageAction($app['log']);
 });
 
 

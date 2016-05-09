@@ -8,9 +8,14 @@ namespace App;
  */
 class ShowIndexPageAction
 {
+    public function __construct($log)
+    {
+        $this->log = $log;
+    }
 
     public function __invoke()
     {
+        $this->log->info("hello");
         return "hello";
     }
 }
