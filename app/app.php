@@ -11,6 +11,9 @@ $app['APP_NAME'] = (false !== getenv("APP_NAME"))
 
 // PROVIDERS
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.path' => __DIR__.'/views',
+));
 
 
 $app['log'] = $app->share(function () use ($app) {
@@ -24,7 +27,10 @@ $app['log'] = $app->share(function () use ($app) {
 
 // CONTROLLERS
 $app['action.index'] = $app->share(function () use ($app) {
-    return new App\ShowIndexPageAction($app['log']);
+    return new App\ShowIndexPageAction(
+        $app['twig'],
+        $app['log']
+    );
 });
 
 
