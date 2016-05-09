@@ -1,7 +1,7 @@
 #!/bin/sh
 
-export APP_ROOT="/srv/crudders"
-export APP_NAME="crudders"
+export APP_ROOT="/srv/app"
+export APP_NAME="app"
 
 
 sudo locale-gen en_GB.UTF-8
@@ -15,7 +15,10 @@ sudo apt-get update -qq \
 
 
 ## CONFIG
-sudo cp $APP_ROOT/env.example /srv/.env;
+cat $APP_ROOT/env.example \
+    | envsubst '$APP_NAME $APP_ROOT' \
+    | sudo tee /srv/.env > /dev/null
+
 sudo rm /etc/nginx/sites-enabled/default;
 cat $APP_ROOT/resources/nginx.conf \
     | envsubst '$APP_NAME $APP_ROOT' \

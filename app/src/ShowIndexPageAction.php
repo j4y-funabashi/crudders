@@ -1,6 +1,6 @@
 <?php
 
-namespace Crudders;
+namespace App;
 
 /**
  * Class ShowIndexPageAction

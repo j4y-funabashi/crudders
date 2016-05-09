@@ -1,7 +1,7 @@
 {
     "autoload": {
         "psr-4": {
-            "Crudders\\": "app/src/",
+            "App\\": "app/src/",
             "Test\\": "tests",
             "CLI\\": "app/CLI/"
         }

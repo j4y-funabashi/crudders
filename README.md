@@ -1,2 +1,1 @@
-# crudders
-Indieweb micropub client that will support create,update,delete
+Silex Skeleton that includes stuff I use in every project
